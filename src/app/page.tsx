@@ -40,7 +40,7 @@ export default function Home() {
       {!loading && (
         <>
           <Navbar />
-          <main>
+          <main className="flex flex-col gap-24 sm:gap-32 pb-24 overflow-x-hidden">
             <Hero />
             <About />
             <TechStack />
