@@ -1,139 +1,160 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { GraduationCap, MapPin, Award, BookOpen, School } from "lucide-react";
-import { education } from "@/lib/data";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { GraduationCap, BookOpen, Cpu, Calendar, Award } from "lucide-react";
 
-const iconMap = [GraduationCap, BookOpen, School];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
+// Education Data (Chronological Order: 10th -> 12th -> B.Tech)
+const educationData = [
+  {
+    id: 1,
+    title: "Matriculation (10th Grade)",
+    category: "Foundation",
+    institution: "Takshila School, Begusarai",
+    score: "93.4%",
+    year: "Completed",
+    description: "Built strong fundamentals in Mathematics & Science, developing analytical reasoning skills.",
+    icon: BookOpen,
   },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" as const },
+  {
+    id: 2,
+    title: "Intermediate (12th Grade)",
+    category: "Specialization",
+    institution: "Mount Litera Public School, Begusarai",
+    score: "88.2%",
+    year: "Completed",
+    description: "Specialized in Physics, Chemistry & Math. Cultivated problem-solving methodologies.",
+    icon: Cpu,
   },
-};
+  {
+    id: 3,
+    title: "B.Tech in Computer Science",
+    category: "Engineering Core",
+    institution: "Lovely Professional University, Punjab",
+    score: "7.61 CGPA",
+    year: "Ongoing",
+    description: "Specializing in Software Engineering, Data Structures, Algorithms, and Full-Stack Development.",
+    icon: GraduationCap,
+  },
+];
 
 export default function Education() {
-  return (
-    <section id="education" className="relative py-24 px-6">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -bottom-40 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#00ff9c]/5 blur-[120px]" />
-      </div>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end end"],
+  });
 
-      <div className="relative mx-auto max-w-7xl">
-        {/* Section heading */}
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  return (
+    <section id="education" className="relative py-24 sm:py-32 overflow-hidden">
+      {/* Background Elements */}
+      <div className="pointer-events-none absolute inset-0 flex justify-center">
+        <div className="h-full w-[1px] bg-gradient-to-b from-transparent via-[#00ff9c]/10 to-transparent" />
+      </div>
+      
+      <div className="relative mx-auto max-w-7xl px-6" ref={containerRef}>
+        
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
+          viewport={{ once: true }}
+          className="mb-20 text-center"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            <span className="font-mono text-[#00ff9c] mr-2 text-2xl">&lt;</span>
-            Education
-            <span className="font-mono text-[#00ff9c] ml-2 text-2xl">/&gt;</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-glow">
+            <span className="font-mono text-[#00ff9c] mr-3">&lt;</span>
+            Academic Journey
+            <span className="font-mono text-[#00ff9c] ml-3">/&gt;</span>
           </h2>
-          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#00ff9c]" />
+          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
         </motion.div>
 
-        {/* Education grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid gap-6 md:grid-cols-3"
-        >
-          {education.map((edu, index) => {
-            const Icon = iconMap[index] || GraduationCap;
+        {/* Timeline Container */}
+        <div className="relative mx-auto max-w-4xl">
+          {/* Central Line (Animated) */}
+          <div className="absolute left-[19px] md:left-1/2 top-0 bottom-0 w-[2px] h-full bg-[#111] md:-translate-x-1/2">
+            <motion.div 
+              style={{ scaleY, originY: 0 }}
+              className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#00ff9c] via-[#00ff9c] to-transparent shadow-[0_0_20px_#00ff9c]"
+            />
+          </div>
 
-            return (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                whileHover={{
-                  y: -6,
-                  borderColor: "rgba(0, 255, 156,0.2)",
-                  boxShadow: "0 12px 40px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 255, 156,0.04)",
-                  transition: { duration: 0.3 },
-                }}
-                className="glass-card flex flex-col items-center text-center rounded-2xl p-8 sm:p-10 transition-all h-full"
-              >
-                {/* Icon */}
-                <div className="mb-6">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2, type: "spring" }}
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#00ff9c]/10 border border-[#00ff9c]/20"
-                    style={{ boxShadow: "0 0 15px rgba(0, 255, 156,0.1)" }}
-                  >
-                    <Icon className="h-8 w-8 text-[#00ff9c]" />
-                  </motion.div>
-                </div>
+          <div className="space-y-16 md:space-y-24">
+            {educationData.map((edu, index) => {
+              const Icon = edu.icon;
+              const isEven = index % 2 === 0;
 
-                {/* Content */}
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-sm font-medium text-[#00ff9c] mb-1 font-mono">
-                    {edu.field}
-                  </p>
-                  <div className="flex items-center justify-center gap-1.5 text-neutral-400 mb-5">
-                    <MapPin className="h-3.5 w-3.5" />
-                    <p className="text-xs">{edu.institution}</p>
+              return (
+                <motion.div
+                  key={edu.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className={`relative flex flex-col md:flex-row items-center md:justify-between gap-8 md:gap-0 ${
+                    isEven ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Timeline Node (Center) */}
+                  <div className="absolute left-[10px] md:left-1/2 top-0 md:top-8 w-5 h-5 md:-translate-x-1/2 z-10 flex items-center justify-center">
+                    <div className="w-3 h-3 bg-[#050505] border-2 border-[#00ff9c] rounded-full shadow-[0_0_10px_#00ff9c] relative">
+                        <div className="absolute inset-0 bg-[#00ff9c] animate-ping opacity-50 rounded-full" />
+                    </div>
                   </div>
 
-                  {/* Divider */}
-                  <div className="mx-auto mb-5 h-px w-16 bg-gradient-to-r from-transparent via-[#00ff9c]/30 to-transparent" />
+                  {/* Empty Spacer for alternating layout */}
+                  <div className="hidden md:block w-1/2" />
 
-                  {/* CGPA & Status */}
-                  <div className="flex items-center justify-center gap-6">
-                    <div className="text-center">
-                      <div className="flex items-center gap-1.5 text-neutral-500 mb-1">
-                        <Award className="h-3 w-3" />
-                        <span className="text-[10px] uppercase tracking-widest font-mono">
-                          {edu.cgpa.includes("%") ? "Score" : "CGPA"}
-                        </span>
-                      </div>
-                      <p className="text-xl font-bold neon-text font-mono">
-                        {edu.cgpa}
-                      </p>
-                    </div>
-                    <div className="h-8 w-px bg-[#00ff9c]/15" />
-                    <div className="text-center">
-                      <div className="text-[10px] uppercase tracking-widest text-neutral-500 mb-1 font-mono">
-                        Status
-                      </div>
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00ff9c]/20 bg-[#00ff9c]/10 px-2.5 py-0.5 text-xs font-mono font-medium text-[#00ff9c]">
-                        {edu.status === "Pursuing" && (
-                          <span
-                            className="h-1.5 w-1.5 rounded-full bg-[#00ff9c] animate-pulse"
-                            style={{ boxShadow: "0 0 6px rgba(0, 255, 156,0.6)" }}
-                          />
-                        )}
-                        {edu.status}
+                  {/* Content Card */}
+                  <div className={`w-full md:w-[45%] pl-12 md:pl-0 ${isEven ? "md:pr-12 md:text-right" : "md:pl-12 md:text-left"}`}>
+                    
+                    {/* Category Label */}
+                    <div className={`flex items-center gap-2 mb-2 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+                      <span className="text-xs font-mono text-[#00ff9c] uppercase tracking-widest bg-[#00ff9c]/10 px-2 py-1 rounded border border-[#00ff9c]/20">
+                        0{edu.id} // {edu.category}
                       </span>
                     </div>
+
+                    <div className="group relative bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 p-6 rounded-2xl hover:border-[#00ff9c]/30 transition-colors duration-300">
+                      {/* Hover Glow Effect */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00ff9c] to-blue-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500" />
+                      
+                      <div className="relative z-10">
+                        {/* Header */}
+                        <div className={`flex flex-col gap-1 mb-4 ${isEven ? "md:items-end" : "md:items-start"}`}>
+                          <h3 className="text-xl font-bold text-white group-hover:text-[#00ff9c] transition-colors">
+                            {edu.title}
+                          </h3>
+                          <div className="flex items-center gap-2 text-neutral-400 text-sm">
+                            <span className="truncate">{edu.institution}</span>
+                          </div>
+                        </div>
+
+                        {/* Details Grid */}
+                        <div className={`flex flex-wrap gap-4 mb-4 text-sm ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+                           <div className="flex items-center gap-1.5 text-neutral-300 bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+                              <Award className="w-4 h-4 text-[#00ff9c]" />
+                              <span className="text-white font-semibold">{edu.score}</span>
+                           </div>
+                           <div className="flex items-center gap-1.5 text-neutral-400">
+                              <Calendar className="w-4 h-4" />
+                              <span>{edu.year}</span>
+                           </div>
+                        </div>
+
+                        <p className="text-neutral-400 text-sm leading-relaxed">
+                          {edu.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
