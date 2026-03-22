@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Terminal, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/lib/data";
+import AvatarFlip from "@/components/ui/avatar-flip";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -39,77 +40,89 @@ export default function Hero() {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 mx-auto max-w-[1000px] px-6 w-full flex flex-col pt-12"
+        className="relative z-10 mx-auto max-w-[1240px] px-6 w-full flex flex-col pt-12"
       >
-        {/* Premium Terminal Block */}
-        <motion.div variants={fadeUp} className="mb-12">
-          <div className="inline-flex flex-col bg-[#111111]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl p-6 relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00ff9c]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-              <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-              <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-              <div className="ml-4 flex items-center gap-2 text-xs font-mono text-neutral-500">
-                <Terminal className="h-3.5 w-3.5" />
-                <span>shivam@system: ~</span>
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex-1 w-full text-left">
+            {/* Premium Terminal Block */}
+            <motion.div variants={fadeUp} className="mb-8">
+              <div className="inline-flex flex-col bg-[#111111]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl p-6 relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00ff9c]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+                  <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
+                  <div className="ml-4 flex items-center gap-2 text-xs font-mono text-neutral-500">
+                    <Terminal className="h-3.5 w-3.5" />
+                    <span>shivam@system: ~</span>
+                  </div>
+                </div>
+
+                <div className="font-mono text-sm sm:text-base leading-relaxed text-neutral-300">
+                  <span className="text-[#00ff9c]">const</span> profile = {'{'}
+                  <br />
+                  <span className="ml-6 tracking-wide">name: <span className="text-[#e6b450]">'Shivam'</span>,</span>
+                  <br />
+                  <span className="ml-6 tracking-wide">role: <span className="text-[#e6b450]">'Software Engineer'</span>,</span>
+                  <br />
+                  <span className="ml-6 tracking-wide">focus: <span className="text-[#e6b450]">'Scalable Full-Stack Architecture'</span></span>
+                  <br />
+                  {'}'};
+                </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="font-mono text-sm sm:text-base leading-relaxed text-neutral-300">
-              <span className="text-[#00ff9c]">const</span> profile = {'{'}
-              <br />
-              <span className="ml-6 tracking-wide">name: <span className="text-[#e6b450]">'Shivam'</span>,</span>
-              <br />
-              <span className="ml-6 tracking-wide">role: <span className="text-[#e6b450]">'Software Engineer'</span>,</span>
-              <br />
-              <span className="ml-6 tracking-wide">focus: <span className="text-[#e6b450]">'Scalable Full-Stack Architecture'</span></span>
-              <br />
-              {'}'};
-            </div>
+            {/* Main Value Proposition */}
+            <motion.div variants={fadeUp} className="max-w-4xl">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-[-0.02em] text-white leading-[1.1] mb-8">
+                Engineering robust systems for <br className="hidden md:block" />
+                <span className="text-[#00ff9c]">high-performance</span> web scale.
+              </h1>
+              
+              <p className="text-lg sm:text-xl text-neutral-400 max-w-2xl leading-relaxed font-light mb-10">
+                I design and build resilient architectures, bridging the gap between intricate backend logic and seamless user workflows. Actively seeking opportunities to drive engineering excellence.
+              </p>
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4">
+              <button
+                onClick={() => scrollTo("#projects")}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-all hover:bg-neutral-200 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Explore My Work <ArrowRight className="h-4 w-4" />
+              </button>
+              
+              <div className="flex items-center gap-4 w-full sm:w-auto">
+                <a
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20"
+                >
+                  <Github className="h-4 w-4" /> GitHub
+                </a>
+                <a
+                  href={siteConfig.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20"
+                >
+                  <Linkedin className="h-4 w-4" /> LinkedIn
+                </a>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
 
-        {/* Main Value Proposition */}
-        <motion.div variants={fadeUp} className="max-w-4xl">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-[-0.02em] text-white leading-[1.1] mb-8">
-            Engineering robust systems for <br className="hidden md:block" />
-            <span className="text-[#00ff9c]">high-performance</span> web scale.
-          </h1>
-          
-          <p className="text-lg sm:text-xl text-neutral-400 max-w-2xl leading-relaxed font-light mb-12">
-            I design and build resilient architectures, bridging the gap between intricate backend logic and seamless user workflows. Actively seeking opportunities to drive engineering excellence.
-          </p>
-        </motion.div>
-
-        {/* Action Buttons */}
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4">
-          <button
-            onClick={() => scrollTo("#projects")}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-all hover:bg-neutral-200 hover:scale-[1.02] active:scale-[0.98]"
+          {/* Right Side - Avatar Flip */}
+          <motion.div 
+            variants={fadeUp}
+            className="flex-1 flex justify-center lg:justify-end w-full"
           >
-            Explore My Work <ArrowRight className="h-4 w-4" />
-          </button>
-          
-          <div className="flex items-center gap-4 w-full sm:w-auto">
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20"
-            >
-              <Github className="h-4 w-4" /> GitHub
-            </a>
-            <a
-              href={siteConfig.links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20"
-            >
-              <Linkedin className="h-4 w-4" /> LinkedIn
-            </a>
-          </div>
-        </motion.div>
+            <AvatarFlip />
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll indicator */}
