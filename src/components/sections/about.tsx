@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Layout, Database, Lightbulb } from "lucide-react";
+import { Code2, Layout, Database, Lightbulb, Globe, Settings, Cpu, Layers } from "lucide-react";
 import { skills } from "@/lib/data";
+import Image from "next/image";
 
 const iconMap = {
   code: Code2,
@@ -10,6 +11,52 @@ const iconMap = {
   database: Database,
   brain: Lightbulb,
 } as const;
+
+// Helper to get skill icon URL or component
+const getSkillIcon = (skillName: string) => {
+  const iconUrls: Record<string, string> = {
+    "TypeScript": "https://cdn.simpleicons.org/typescript/3178C6",
+    "JavaScript": "https://cdn.simpleicons.org/javascript/F7DF1E",
+    "Python": "https://cdn.simpleicons.org/python/3776AB",
+    "C++": "https://cdn.simpleicons.org/cplusplus/00599C",
+    "Java": "https://cdn.simpleicons.org/openjdk/white",
+    "PHP": "https://cdn.simpleicons.org/php/777BB4",
+    
+    "React.js": "https://cdn.simpleicons.org/react/61DAFB",
+    "Next.js": "https://cdn.simpleicons.org/nextdotjs/white",
+    "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/06B6D4",
+    "Framer Motion": "https://cdn.simpleicons.org/framer/white",
+    "GSAP": "https://cdn.simpleicons.org/greensock/88CE02",
+    
+    "Node.js": "https://cdn.simpleicons.org/nodedotjs/339933",
+    "Express": "https://cdn.simpleicons.org/express/white",
+    "Flask": "https://cdn.simpleicons.org/flask/white",
+    "MySQL": "https://cdn.simpleicons.org/mysql/4479A1",
+    "MongoDB": "https://cdn.simpleicons.org/mongodb/47A248",
+    
+    "Vercel": "https://cdn.simpleicons.org/vercel/white",
+    "Render": "https://cdn.simpleicons.org/render/white",
+    "PostgreSQL": "https://cdn.simpleicons.org/postgresql/4169E1",
+    "Docker": "https://cdn.simpleicons.org/docker/2496ED",
+  };
+
+  const manualIcons: Record<string, any> = {
+    "REST APIs": Globe,
+    "WebSocket": Settings,
+    "System Design": Layers,
+    "Microservices": Cpu,
+  };
+
+  if (iconUrls[skillName]) {
+    return { type: 'img', src: iconUrls[skillName] };
+  }
+  
+  if (manualIcons[skillName]) {
+    return { type: 'icon', Icon: manualIcons[skillName] };
+  }
+
+  return { type: 'icon', Icon: Code2 }; // Default
+};
 
 const containerVariants = {
   hidden: {},
@@ -104,26 +151,42 @@ export default function About() {
                   </h3>
                 </div>
 
-                {/* Skill pills */}
+                {/* Skill pills with logos */}
                 <motion.div
                   variants={containerVariants}
                   className="flex flex-wrap gap-2 mt-auto"
                 >
-                  {category.items.map((skill) => (
-                    <motion.span
-                      key={skill}
-                      variants={pillVariants}
-                      whileHover={{
-                        scale: 1.05,
-                        boxShadow: "0 0 12px rgba(0, 255, 156,0.1)",
-                        borderColor: "rgba(0, 255, 156,0.3)",
-                      }}
-                      transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                      className="cursor-default rounded-md border border-white/5 bg-white/[0.02] px-3 py-1.5 text-xs font-medium text-neutral-300 transition-all font-mono hover:text-[#00ff9c] hover:bg-[#00ff9c]/5"
-                    >
-                      {skill}
-                    </motion.span>
-                  ))}
+                  {category.items.map((skill) => {
+                    const { type, src, Icon: SkillIcon } = getSkillIcon(skill);
+                    return (
+                      <motion.span
+                        key={skill}
+                        variants={pillVariants}
+                        whileHover={{
+                          scale: 1.05,
+                          boxShadow: "0 0 15px rgba(0, 255, 156,0.15)",
+                          borderColor: "rgba(0, 255, 156,0.4)",
+                          backgroundColor: "rgba(0, 255, 156, 0.05)"
+                        }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        className="group flex items-center gap-2 cursor-default rounded-md border border-white/5 bg-white/[0.02] px-3 py-1.5 text-xs font-medium text-neutral-300 transition-all font-mono hover:text-white"
+                      >
+                        {type === 'img' ? (
+                          <div className="relative w-3.5 h-3.5 flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+                            <img 
+                              src={src} 
+                              alt={skill} 
+                              className="w-full h-full object-contain" 
+                              loading="lazy"
+                            />
+                          </div>
+                        ) : (
+                          <SkillIcon className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:text-[#00ff9c] transition-all" />
+                        )}
+                        <span>{skill}</span>
+                      </motion.span>
+                    );
+                  })}
                 </motion.div>
               </motion.div>
             );
