@@ -70,7 +70,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Envizion - Climate Monitoring Platform",
+    title: "Envizio",
     slug: "envizion",
     date: "Mar 2026",
     description: "A production-grade climate monitoring platform providing localized forecasting through robust Full Stack microservices.",
