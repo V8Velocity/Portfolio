@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Terminal, ArrowRight } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Terminal, ArrowRight, Code2, Database, Layers, Cpu, Globe } from "lucide-react";
 import { siteConfig } from "@/lib/data";
 import AvatarFlip from "@/components/ui/avatar-flip";
 
@@ -17,129 +17,190 @@ const fadeUp = {
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    opacity: 1, 
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 }
   },
 };
+
+const techStack = [
+  { name: "Next.js", icon: Globe },
+  { name: "React", icon: Code2 },
+  { name: "TypeScript", icon: Terminal },
+  { name: "Node.js", icon: Layers },
+  { name: "System Design", icon: Database },
+];
 
 export default function Hero() {
   const scrollTo = (id: string) => {
     const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      const yOffset = -80; 
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-12 lg:pt-0"
     >
-      {/* Background radial highlight */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00ff9c]/[0.02] blur-[120px] rounded-full" />
+      {/* ── Background Elements ─────────────────────────────────────── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Main glow */}
+        <div className="absolute top-[-20%] left-[-10%] w-[1000px] h-[1000px] bg-[#00ff9c]/5 blur-[120px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[800px] h-[800px] bg-[#00ff9c]/5 blur-[100px] rounded-full mix-blend-screen" />
+        {/* Grid pattern overlay (optional) */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-150 contrast-150" />
+      </div>
 
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-        className="relative z-10 mx-auto max-w-[1240px] px-6 w-full flex flex-col pt-12"
-      >
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          <div className="flex-1 w-full text-left">
-            {/* Premium Terminal Block */}
-            <motion.div variants={fadeUp} className="mb-8">
-              <div className="inline-flex flex-col bg-[#111111]/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl p-6 relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00ff9c]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                  <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
-                  <div className="ml-4 flex items-center gap-2 text-xs font-mono text-neutral-500">
-                    <Terminal className="h-3.5 w-3.5" />
-                    <span>shivam@system: ~</span>
-                  </div>
-                </div>
-
-                <div className="font-mono text-sm sm:text-base leading-relaxed text-neutral-300">
-                  <span className="text-[#00ff9c]">const</span> profile = {'{'}
-                  <br />
-                  <span className="ml-6 tracking-wide">name: <span className="text-[#e6b450]">'Shivam'</span>,</span>
-                  <br />
-                  <span className="ml-6 tracking-wide">role: <span className="text-[#e6b450]">'Software Engineer'</span>,</span>
-                  <br />
-                  <span className="ml-6 tracking-wide">focus: <span className="text-[#e6b450]">'Scalable Full-Stack Architecture'</span></span>
-                  <br />
-                  {'}'};
-                </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 w-full">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+        >
+          {/* ── Left Column: Content ────────────────────────────────── */}
+          <div className="flex flex-col gap-8 max-w-2xl">
+            {/* Status Badge */}
+            <motion.div variants={fadeUp} className="flex items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#00ff9c]/10 border border-[#00ff9c]/20 backdrop-blur-md">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff9c] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ff9c]"></span>
+                </span>
+                <span className="text-xs font-mono font-medium text-[#00ff9c] uppercase tracking-wider">
+                  System Online
+                </span>
               </div>
             </motion.div>
 
-            {/* Main Value Proposition */}
-            <motion.div variants={fadeUp} className="max-w-4xl">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-semibold tracking-[-0.02em] text-white leading-[1.1] mb-8">
-                Engineering robust systems for <br className="hidden md:block" />
-                <span className="text-[#00ff9c]">high-performance</span> web scale.
+            {/* Headline */}
+            <motion.div variants={fadeUp}>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+                Engineering <br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-500">
+                  Robust Systems
+                </span>
+                <br />
+                for <span className="text-[#00ff9c]">Web Scale</span>
               </h1>
-              
-              <p className="text-lg sm:text-xl text-neutral-400 max-w-2xl leading-relaxed font-light mb-10">
-                I design and build resilient architectures, bridging the gap between intricate backend logic and seamless user workflows. Actively seeking opportunities to drive engineering excellence.
-              </p>
             </motion.div>
 
-            {/* Action Buttons */}
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4">
+            {/* Subheadline */}
+            <motion.p 
+              variants={fadeUp}
+              className="text-lg text-neutral-400 leading-relaxed max-w-xl border-l-2 border-[#00ff9c]/30 pl-6"
+            >
+              I architect high-performance digital solutions, bridging the gap between 
+              <span className="text-white font-medium"> complex backend logic</span> and 
+              <span className="text-white font-medium"> seamless user experiences</span>.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mt-2">
               <button
                 onClick={() => scrollTo("#projects")}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-all hover:bg-neutral-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
               >
-                Explore My Work <ArrowRight className="h-4 w-4" />
+                <span className="relative z-10 flex items-center gap-2">
+                  View Projects <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
+                <div className="absolute inset-0 bg-neutral-200 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
               </button>
               
-              <div className="flex items-center gap-4 w-full sm:w-auto">
+              <div className="flex items-center gap-3">
                 <a
                   href={siteConfig.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20"
+                  className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-[#00ff9c]/50 hover:text-[#00ff9c] transition-all"
                 >
-                  <Github className="h-4 w-4" /> GitHub
+                  <Github className="w-5 h-5" />
                 </a>
                 <a
                   href={siteConfig.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10 hover:border-white/20"
+                  className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-[#0077b5]/50 hover:text-[#0077b5] transition-all"
                 >
-                  <Linkedin className="h-4 w-4" /> LinkedIn
+                  <Linkedin className="w-5 h-5" />
                 </a>
+              </div>
+            </motion.div>
+
+            {/* Tech Stack Ticker (Proof Badges) */}
+            <motion.div 
+              variants={fadeUp}
+              className="pt-8 border-t border-white/5 flex flex-col gap-4"
+            >
+              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest">Powering Solutions With</span>
+              <div className="flex flex-wrap items-center gap-6 opacity-70">
+                {techStack.map((tech) => (
+                  <div key={tech.name} className="flex items-center gap-2 group cursor-default">
+                    <tech.icon className="w-5 h-5 text-neutral-400 group-hover:text-[#00ff9c] transition-colors" />
+                    <span className="text-sm font-semibold text-neutral-300 group-hover:text-white transition-colors">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>
 
-          {/* Right Side - Avatar Flip */}
+          {/* ── Right Column: Cyber Profile HUD ─────────────────────── */}
           <motion.div 
             variants={fadeUp}
-            className="flex-1 flex justify-center lg:justify-end w-full"
+            className="relative flex justify-center lg:justify-end"
           >
-            <AvatarFlip />
-          </motion.div>
-        </div>
-      </motion.div>
+            {/* HUD Container */}
+            <div className="relative w-full max-w-md aspect-square">
+              {/* Rotating outer rings */}
+              <div className="absolute inset-0 border border-[#00ff9c]/20 rounded-full animate-[spin_10s_linear_infinite]" />
+              <div className="absolute inset-4 border border-dashed border-[#00ff9c]/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+              
+              {/* Decorative HUD lines */}
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00ff9c]/20 to-transparent" />
+              <div className="absolute left-1/2 top-0 h-full w-[1px] bg-gradient-to-b from-transparent via-[#00ff9c]/20 to-transparent" />
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -focus-x-1/2 flex flex-col items-center gap-2 text-neutral-500"
-      >
-        <span className="text-[10px] tracking-[0.3em] font-mono uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-          <ArrowDown className="h-4 w-4" />
+              {/* Data Points */}
+              <div className="absolute top-10 right-10 bg-black/80 backdrop-blur-md border border-[#00ff9c]/30 p-2 rounded text-xs font-mono text-[#00ff9c]">
+                <div>COMMITS: 1.2K+</div>
+                <div className="h-[2px] w-full bg-[#00ff9c]/20 my-1" />
+                <div>UPTIME: 99.9%</div>
+              </div>
+
+              <div className="absolute bottom-10 left-10 bg-black/80 backdrop-blur-md border border-[#00ff9c]/30 p-2 rounded text-xs font-mono text-[#00ff9c]">
+                <div>LOC: DEPLOYED</div>
+                <div className="h-[2px] w-full bg-[#00ff9c]/20 my-1" />
+                <div>LATENCY: 12ms</div>
+              </div>
+
+              {/* Center Content (Avatar Flip) */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative z-10 scale-90 sm:scale-100 transition-transform hover:scale-105 duration-500">
+                  <AvatarFlip />
+                  
+                  {/* Glow under avatar */}
+                  <div className="absolute inset-0 bg-[#00ff9c]/20 blur-[60px] -z-10 rounded-full" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        {/* ── Scroll Indicator ──────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500"
+        >
+          <div className="h-10 w-[1px] bg-gradient-to-b from-transparent via-[#00ff9c]/50 to-transparent" />
+          <span className="text-[10px] tracking-[0.3em] font-mono uppercase text-[#00ff9c]/70">Scroll_Down</span>
+        </motion.div>
+      </div>
     </section>
   );
 }
