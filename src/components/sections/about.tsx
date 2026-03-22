@@ -105,15 +105,16 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
+          className="mb-20 text-left"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            <span className="font-mono text-[#00ff9c] mr-2 text-2xl">&lt;</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6 sm:text-4xl text-glow flex items-center gap-3">
+            <span className="font-mono text-[#00ff9c] text-2xl">&lt;</span>
             Skills & Expertise
-            <span className="font-mono text-[#00ff9c] ml-2 text-2xl">/&gt;</span>
+            <span className="font-mono text-[#00ff9c] text-2xl">/&gt;</span>
+            <span className="animate-blink inline-block w-3 h-8 bg-[#00ff9c] align-middle" />
           </h2>
-          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#00ff9c]" />
-          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+          <div className="h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
+          <p className="mt-6 text-neutral-400 max-w-2xl text-lg leading-relaxed">
             Core technologies and competencies I leverage to build production-grade applications.
           </p>
         </motion.div>
@@ -124,7 +125,7 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
         >
           {skills.map((category) => {
             const Icon = iconMap[category.icon];

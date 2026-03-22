@@ -119,21 +119,22 @@ export default function Certifications() {
         <div className="absolute top-1/2 left-0 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-[#00ff9c]/5 blur-[120px]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 mb-16 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 mb-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-center sm:text-left"
+          className="text-left"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-2 sm:text-4xl">
-            <span className="font-mono text-[#00ff9c] mr-2 text-2xl">&lt;</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6 sm:text-4xl text-glow flex items-center gap-3">
+            <span className="font-mono text-[#00ff9c] text-2xl">&lt;</span>
             Continuous Learning
-            <span className="font-mono text-[#00ff9c] ml-2 text-2xl">/&gt;</span>
+            <span className="font-mono text-[#00ff9c] text-2xl">/&gt;</span>
+            <span className="animate-blink inline-block w-3 h-8 bg-[#00ff9c] align-middle" />
           </h2>
-          <div className="mt-4 h-1 w-12 rounded-full bg-[#00ff9c] mx-auto sm:mx-0" />
-          <p className="mt-4 text-neutral-400 max-w-2xl leading-relaxed mx-auto sm:mx-0">
+          <div className="h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
+          <p className="mt-6 text-neutral-400 max-w-2xl leading-relaxed">
             Verified coursework across networking, computer architecture, operating systems, and core computing fundamentals, demonstrating continuous learning and technical depth.
           </p>
         </motion.div>

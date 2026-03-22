@@ -133,9 +133,9 @@ export default function Hero() {
             {/* Tech Stack Ticker (Proof Badges) */}
             <motion.div 
               variants={fadeUp}
-              className="pt-8 border-t border-white/5 flex flex-col gap-4"
+              className="pt-8 border-t border-white/5 flex flex-col items-start gap-4"
             >
-              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest">Powering Solutions With</span>
+              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest text-left">Powering Solutions With</span>
               <div className="flex flex-wrap items-center gap-6 opacity-70">
                 {techStack.map((tech) => (
                   <div key={tech.name} className="flex items-center gap-2 group cursor-default">

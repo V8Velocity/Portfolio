@@ -102,14 +102,15 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="mb-20 text-center sm:text-left"
+          className="mb-20 text-left"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-2 sm:text-4xl">
-            <span className="font-mono text-[#00ff9c] mr-2 text-2xl">&lt;</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6 sm:text-4xl text-glow flex items-center gap-3">
+            <span className="font-mono text-[#00ff9c] text-2xl">&lt;</span>
             Selected Work
-            <span className="font-mono text-[#00ff9c] ml-2 text-2xl">/&gt;</span>
+            <span className="font-mono text-[#00ff9c] text-2xl">/&gt;</span>
+            <span className="animate-blink inline-block w-3 h-8 bg-[#00ff9c] align-middle" />
           </h2>
-          <div className="mt-4 h-1 w-12 rounded-full bg-[#00ff9c] mx-auto sm:mx-0" />
+          <div className="h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
         </motion.div>
 
         {/* Minimalist List styled for Matrix */}
@@ -121,27 +122,27 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group relative flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#00ff9c]/10 py-8 transition-all hover:bg-[#00ff9c]/5 px-4 -mx-4 sm:px-4 sm:rounded-lg sm:hover:shadow-2xl sm:hover:shadow-[#00ff9c]/5"
+              className="group relative flex flex-col sm:flex-row sm:items-start justify-between border-b border-[#00ff9c]/10 py-12 transition-all hover:bg-[#00ff9c]/5 px-6 -mx-6 sm:rounded-lg sm:hover:shadow-2xl sm:hover:shadow-[#00ff9c]/5"
               onMouseEnter={() => setHoveredProject(project)}
               onMouseLeave={() => setHoveredProject(null)}
             >
               {/* Left Side: Title & Info */}
-              <div className="flex flex-col sm:w-2/3">
-                <h3 className="text-2xl sm:text-3xl font-semibold text-neutral-200 transition-colors group-hover:text-[#00ff9c] mb-2 font-mono">
+              <div className="flex flex-col sm:w-2/3 pr-8">
+                <h3 className="text-2xl sm:text-3xl font-bold text-neutral-100 transition-colors group-hover:text-[#00ff9c] mb-4 font-mono">
                   {project.title}
                 </h3>
-                <p className="text-neutral-400 text-sm max-w-xl leading-relaxed mb-4 sm:mb-0">
+                <p className="text-neutral-400 text-base leading-relaxed mb-6 sm:mb-0">
                   {project.description}
                 </p>
               </div>
 
               {/* Right Side: Links & Tech */}
-              <div className="flex flex-col sm:items-end gap-3 sm:w-1/3 mt-4 sm:mt-0">
-                <div className="flex flex-wrap sm:justify-end gap-2">
+              <div className="flex flex-col sm:items-end gap-6 sm:w-1/3 mt-6 sm:mt-1">
+                <div className="flex flex-wrap sm:justify-end gap-2.5">
                   {project.stack.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full border border-[#00ff9c]/20 bg-[#00ff9c]/5 px-3 py-1 text-xs font-mono text-[#00ff9c]"
+                      className="rounded-full border border-[#00ff9c]/20 bg-[#00ff9c]/5 px-3 py-1.5 text-xs font-mono text-[#00ff9c]"
                     >
                       {tech}
                     </span>

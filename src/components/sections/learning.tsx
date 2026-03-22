@@ -30,22 +30,23 @@ const cardVariants = {
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-24 px-6">
+    <section id="achievements" className="py-24 px-6 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
+          className="mb-20 text-left"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            <span className="font-mono text-[#00ff9c] mr-2 text-2xl">&lt;</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-6 sm:text-4xl text-glow flex items-center gap-3">
+            <span className="font-mono text-[#00ff9c] text-2xl">&lt;</span>
             Achievements & Training
-            <span className="font-mono text-[#00ff9c] ml-2 text-2xl">/&gt;</span>
+            <span className="font-mono text-[#00ff9c] text-2xl">/&gt;</span>
+            <span className="animate-blink inline-block w-3 h-8 bg-[#00ff9c] align-middle" />
           </h2>
-          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#00ff9c]" />
-          <p className="mt-4 text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+          <div className="h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
+          <p className="mt-6 text-neutral-400 max-w-2xl text-lg leading-relaxed">
             Milestones earned through consistent problem-solving practice and intensive training programs.
           </p>
         </motion.div>
@@ -55,7 +56,7 @@ export default function Achievements() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 gap-5 md:grid-cols-2"
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {achievements.map((achievement) => {
             const Icon = iconMap[achievement.icon];
@@ -70,7 +71,7 @@ export default function Achievements() {
                   borderColor: "rgba(0, 255, 156,0.2)",
                   transition: { duration: 0.3 },
                 }}
-                className="glass-card group flex flex-col rounded-2xl p-8 transition-all h-full"
+                className="glass-card group flex flex-col rounded-2xl p-8 sm:p-10 transition-all h-full"
               >
                 <div className="mb-6 flex flex-col gap-4">
                   <div

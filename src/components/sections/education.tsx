@@ -61,14 +61,15 @@ export default function Education() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20 text-center"
+          className="mb-20 text-left"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-glow">
-            <span className="font-mono text-[#00ff9c] mr-3">&lt;</span>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl text-glow flex items-center gap-3">
+            <span className="font-mono text-[#00ff9c] text-2xl">&lt;</span>
             Academic Journey
-            <span className="font-mono text-[#00ff9c] ml-3">/&gt;</span>
+            <span className="font-mono text-[#00ff9c] text-2xl">/&gt;</span>
+            <span className="animate-blink inline-block w-3 h-8 bg-[#00ff9c] align-middle" />
           </h2>
-          <div className="mx-auto mt-4 h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
+          <div className=" mt-4 h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
         </motion.div>
 
         {/* Timeline Container */}
