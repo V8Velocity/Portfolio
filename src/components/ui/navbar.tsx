@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -170,58 +170,5 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-        {/* Mobile menu toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-neutral-400 hover:text-white transition-colors"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden absolute top-full left-4 right-4 mt-2 rounded-2xl bg-[#111111]/95 backdrop-blur-3xl border border-white/10 p-6 shadow-2xl overflow-hidden"
-          >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href.replace("#", "");
-                return (
-                  <button
-                    key={link.href}
-                    onClick={() => handleClick(link.href)}
-                    className={`text-sm text-left flex items-center justify-between font-mono pb-4 border-b border-white/5 transition-colors ${isActive
-                      ? "text-[#00ff9c]"
-                      : "text-neutral-400 hover:text-white"
-                      }`}
-                  >
-                    <span>{link.label}</span>
-                    {isActive && <span className="h-1.5 w-1.5 rounded-full bg-[#00ff9c]" />}
-                  </button>
-                );
-              })}
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 w-full rounded-xl bg-white text-black px-4 py-3 text-sm font-semibold text-center transition-all active:scale-95"
-              >
-                Download Resume
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
   );
 }
