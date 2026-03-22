@@ -192,8 +192,8 @@ export default function Contact() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-5 relative z-10">
-                  <div className="grid gap-5 sm:grid-cols-2">
+                <form onSubmit={handleSubmit} noValidate className="space-y-6 relative z-10">
+                  <div className="grid gap-6 sm:grid-cols-2">
                     <div className="relative group">
                       <input
                         name="name"
