@@ -45,8 +45,11 @@ function CertificationCard({ cert, isMobile = false }: { cert: typeof certificat
 
         {/* Metadata Row */}
         <div className="flex gap-2 mt-auto flex-wrap">
-          <span className="text-[10px] uppercase tracking-wider font-mono text-neutral-400 bg-white/5 border border-white/10 px-2 py-1 rounded-md backdrop-blur-md">Coursera</span>
-          <span className="text-[10px] uppercase tracking-wider font-mono text-neutral-400 bg-white/5 border border-white/10 px-2 py-1 rounded-md backdrop-blur-md">Professional</span>
+          {(cert.tags || ["Coursera", "Professional"]).map((tag, i) => (
+            <span key={i} className="text-[10px] uppercase tracking-wider font-mono text-neutral-400 bg-white/5 border border-white/10 px-2 py-1 rounded-md backdrop-blur-md">
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
 

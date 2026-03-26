@@ -105,6 +105,7 @@ export type Achievement = {
   description: string;
   icon: "star" | "award" | "trophy";
   stars?: number;
+  url?: string;
 };
 
 export const achievements: Achievement[] = [
@@ -121,6 +122,14 @@ export const achievements: Achievement[] = [
       "Demonstrated rigorous competency in low-level memory management, Standard Template Library (STL) scaling, and competitive performance tuning.",
     icon: "star",
     stars: 5,
+  },
+  {
+    title: "HackerRank — 5★ Problem Solving",
+    description:
+      "Achieved top-percentile rating validating structured problem solving, logical deduction, and algorithmic thinking.",
+    icon: "star",
+    stars: 5,
+    url: "https://www.hackerrank.com/profile/shivam825289"
   },
   {
     title: "Data Structures & Algorithms Certification",
@@ -172,17 +181,24 @@ export type Certification = {
   date?: string;
   url?: string;
   image?: string;
+  tags?: string[];
 };
 
 export const certifications: Certification[] = [
-  { title: "Computer Communications", issuer: "University of Colorado System", url: "/ComputerCommunication.pdf" },
-  { title: "Digital Systems: From Logic Gates to Processors", issuer: "Universitat Autònoma de Barcelona", url: "/Digital%20Systems%20From%20Logic%20Gates%20to%20Processors.pdf" },
-  { title: "Introduction to Hardware and Operating Systems", issuer: "IBM", url: "/IntroToHardware.pdf" },
-  { title: "Packet Switching Networks and Algorithms", issuer: "University of Colorado System", url: "/PacketSwitchingNetworks.pdf" },
-  { title: "TCP/IP and Advanced Topics", issuer: "University of Colorado System", url: "/TCPIP%20and%20advanced%20topics.pdf" },
-  { title: "The Bits and Bytes of Computer Networking", issuer: "Google", url: "/Thebitsandbytesofcomputernetworking.pdf" },
-  { title: "Peer-to-Peer Protocols and Local Area Networks", issuer: "University of Colorado System", url: "/PeerToPeer.pdf" },
-  { title: "Fundamentals of Network Communication", issuer: "University of Colorado System", url: "/FundamentalsOfNetworkCommunication.pdf" },
-  { title: "The Science of Well-Being", issuer: "Yale University", url: "/The%20Science%20Of%20Well%20Being.pdf" },
-  { title: "Computer Architecture", issuer: "Princeton University" },
+  { title: "Computer Communications", issuer: "University of Colorado System", url: "/ComputerCommunication.pdf", tags: ["Coursera", "Professional"] },
+  { title: "Digital Systems: From Logic Gates to Processors", issuer: "Universitat Autònoma de Barcelona", url: "/Digital%20Systems%20From%20Logic%20Gates%20to%20Processors.pdf", tags: ["Coursera", "Professional"] },
+  { title: "Introduction to Hardware and Operating Systems", issuer: "IBM", url: "/IntroToHardware.pdf", tags: ["Coursera", "Professional"] },
+  { title: "Packet Switching Networks and Algorithms", issuer: "University of Colorado System", url: "/PacketSwitchingNetworks.pdf", tags: ["Coursera", "Professional"] },
+  { title: "TCP/IP and Advanced Topics", issuer: "University of Colorado System", url: "/TCPIP%20and%20advanced%20topics.pdf", tags: ["Coursera", "Professional"] },
+  { title: "The Bits and Bytes of Computer Networking", issuer: "Google", url: "/Thebitsandbytesofcomputernetworking.pdf", tags: ["Coursera", "Professional"] },
+  { title: "Peer-to-Peer Protocols and Local Area Networks", issuer: "University of Colorado System", url: "/PeerToPeer.pdf", tags: ["Coursera", "Professional"] },
+  { title: "Fundamentals of Network Communication", issuer: "University of Colorado System", url: "/FundamentalsOfNetworkCommunication.pdf", tags: ["Coursera", "Professional"] },
+  { title: "The Science of Well-Being", issuer: "Yale University", url: "/The%20Science%20Of%20Well%20Being.pdf", tags: ["Coursera", "Course"] },
+  { title: "Computer Architecture", issuer: "Princeton University", tags: ["Coursera", "Course"] },
+  { title: "Build Generative AI Apps", issuer: "Infosys Springboard", tags: ["Infosys", "Certification"] },
+  { title: "ChatGPT-4 Prompt Engineering", issuer: "Infosys Springboard", tags: ["Infosys", "Certification"] },
+  { title: "Computational Theory Language", issuer: "Infosys Springboard", tags: ["Infosys", "Course"] },
+  { title: "Master Generative AI", issuer: "Infosys Springboard", tags: ["Infosys", "Certification"] },
+  { title: "Privacy & Security in Social Media", issuer: "NPTEL", tags: ["NPTEL", "Course"] },
 ];
+

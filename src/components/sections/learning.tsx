@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Award } from "lucide-react";
+import { Star, Award, ExternalLink } from "lucide-react";
 import { achievements } from "@/lib/data";
 
 const iconMap = {
@@ -116,6 +116,19 @@ export default function Achievements() {
                 <p className="text-sm leading-relaxed text-neutral-400">
                   {achievement.description}
                 </p>
+
+                {achievement.url && (
+                  <div className="mt-4 mt-auto pt-4">
+                    <a 
+                      href={achievement.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-mono text-[#00ff9c] hover:text-[#00ff9c]/80 transition-colors bg-[#00ff9c]/10 border border-[#00ff9c]/20 px-3 py-1.5 rounded-lg w-max"
+                    >
+                      View Profile <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                )}
               </motion.div>
             );
           })}
