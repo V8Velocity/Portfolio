@@ -1,10 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import Hero from "@/components/sections/hero";
+import AboutMe from "@/components/sections/about-me";
 import About from "@/components/sections/about";
 import Education from "@/components/sections/education";
 import TechStack from "@/components/sections/tech-stack";
@@ -40,8 +41,9 @@ export default function Home() {
       {!loading && (
         <>
           <Navbar />
-          <main className="flex flex-col gap-24 sm:gap-32 pb-24 overflow-x-hidden">
+                    <main className="flex flex-col gap-24 sm:gap-32 pb-24 overflow-x-hidden">
             <Hero />
+            <AboutMe />
             <About />
             <TechStack />
             <Projects />
@@ -57,3 +59,4 @@ export default function Home() {
     </>
   );
 }
+

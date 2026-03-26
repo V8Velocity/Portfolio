@@ -114,7 +114,7 @@ export default function About() {
             <span className="animate-blink inline-block w-3 h-8 bg-[#00ff9c] align-middle" />
           </h2>
           <div className="h-1 w-20 rounded-full bg-[#00ff9c] shadow-[0_0_20px_#00ff9c]" />
-          <p className="mt-6 text-neutral-400 max-w-2xl text-lg leading-relaxed">
+          <p className="mt-6 mb-16 text-neutral-400 max-w-2xl text-lg leading-relaxed">
             Core technologies and competencies I leverage to build production-grade applications.
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-8 grid-cols-1 md:grid-cols-2"
         >
           {skills.map((category) => {
             const Icon = iconMap[category.icon];
@@ -134,16 +134,10 @@ export default function About() {
               <motion.div
                 key={category.name}
                 variants={cardVariants}
-                whileHover={{
-                  y: -4,
-                  boxShadow: "0 10px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 156,0.03)",
-                  borderColor: "rgba(0, 255, 156,0.2)",
-                  transition: { duration: 0.3 },
-                }}
-                className="glass-card flex flex-col rounded-2xl p-6 transition-all h-full"
+                className="flex flex-col rounded-2xl p-8 bg-zinc-900/50 border border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] h-full"
               >
                 {/* Category header */}
-                <div className="mb-6 flex flex-col gap-4">
+                <div className="mb-2 flex flex-col gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#00ff9c]/10 to-transparent border border-[#00ff9c]/20">
                     <Icon className="h-5 w-5 text-[#00ff9c]" />
                   </div>
@@ -155,7 +149,7 @@ export default function About() {
                 {/* Skill pills with logos */}
                 <motion.div
                   variants={containerVariants}
-                  className="flex flex-wrap gap-2 mt-auto"
+                  className="flex flex-wrap gap-3 mt-6 md:mt-auto"
                 >
                   {category.items.map((skill) => {
                     const { type, src, Icon: SkillIcon } = getSkillIcon(skill);

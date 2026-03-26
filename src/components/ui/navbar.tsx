@@ -64,47 +64,35 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
           scrolled
-            ? "bg-[#0a0a0a]/80 backdrop-blur-xl border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] h-20"
-            : "bg-transparent border-transparent h-24"
+            ? "bg-zinc-950/80 backdrop-blur-md border-zinc-800/50"
+            : "bg-transparent border-transparent"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-6 h-full flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
           {/* Logo */}
           <button
             onClick={() => handleClick("#hero")}
-            className="group relative z-50 flex flex-col items-start gap-0.5"
+            className="text-white font-bold text-xl tracking-tight"
           >
-            <div className="flex items-center gap-1">
-              <span className="text-xl font-bold tracking-tighter text-white font-mono">
-                shivam
-              </span>
-              <span className="w-2 h-2 rounded-full bg-[#00ff9c] animate-pulse" />
-            </div>
+            shivam<span className="text-emerald-400">.</span>
           </button>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-6 rounded-full bg-white/5 px-6 py-2 border border-white/5 backdrop-blur-sm">
+            <div className="flex items-center gap-8">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.replace("#", "");
+                const isActive = activeSection === link.href.replace("#", "");  
                 return (
                   <button
                     key={link.href}
                     onClick={() => handleClick(link.href)}
-                    className="relative text-sm font-medium transition-colors duration-300 group"
+                    className={`text-sm font-medium transition-colors duration-300 ${
+                      isActive ? "text-emerald-400" : "text-zinc-400 hover:text-emerald-400"
+                    }`}
                   >
-                    <span className={`relative z-10 ${isActive ? "text-[#00ff9c]" : "text-neutral-400 group-hover:text-white"}`}>
-                      {link.label}
-                    </span>
-                    {isActive && (
-                      <motion.div
-                        layoutId="navbar-indicator"
-                        className="absolute inset-0 -inset-x-3 bg-white/5 rounded-full -z-10"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
+                    {link.label}
                   </button>
                 );
               })}
@@ -114,7 +102,7 @@ export function Navbar() {
               href="/Resumerefined.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#00ff9c] text-black px-5 py-2.5 rounded-full text-sm font-bold transition-all hover:bg-[#00cc7d] hover:shadow-[0_0_20px_rgba(0,255,156,0.3)] hover:scale-105 active:scale-95"
+              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 transition-all duration-300 hover:bg-emerald-500/20 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)]"
             >
               <FileText className="w-4 h-4" />
               <span>Resume</span>

@@ -63,14 +63,14 @@ export default function DeveloperProfile() {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 lg:gap-8 grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
           {/* GitHub Card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="glass-card flex flex-col rounded-2xl p-8 relative overflow-hidden group hover:border-[#00ff9c]/20 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5),_0_0_16px_rgba(0,255,156,0.04)]"
+            className="flex flex-col h-full rounded-2xl p-6 lg:p-8 bg-zinc-900/50 border border-zinc-800 transition-all duration-300 hover:border-emerald-500/30"
           >
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center gap-4">
@@ -111,16 +111,16 @@ export default function DeveloperProfile() {
                 <Activity className="h-3.5 w-3.5 text-[#00ff9c]" />
                 Contribution Heatmap
               </div>
-              <div className="bg-black/50 border border-white/5 rounded-xl p-4 overflow-x-auto overflow-y-hidden custom-scrollbar">
-                <div className="min-w-[700px]">
+              <div className="w-full overflow-x-auto custom-scrollbar bg-black/40 border border-zinc-800/50 rounded-xl p-4">
+                <div className="min-w-[650px] pr-4">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
-                    src="https://ghchart.rshah.org/00ff9c/V8Velocity" 
+                    src="https://ghchart.rshah.org/10b981/V8Velocity" 
                     alt="GitHub Contribution Chart"
-                    className="w-full opacity-90 transition-opacity group-hover:opacity-100 invert"
-                    style={{ filter: "hue-rotate(240deg) brightness(0.9) contrast(1.2)" }}
+                    className="w-full opacity-90 transition-opacity hover:opacity-100"
+                    style={{ filter: "hue-rotate(240deg) brightness(0.9) contrast(1.2) invert(1)" }}
                   />
-                  {/* The ghchart natively generates green for 00ff9c but without dark mode background. We invert it locally via CSS filter trick or rely on transaprency. Actually, ghchart returns transparent SVG, meaning it works beautifully on dark mode immediately without invert if we just use the hex! */}
+                  {/* The ghchart natively generates green for hex but without dark mode background. We invert it locally via CSS filter trick. */}
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function DeveloperProfile() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card flex flex-col rounded-2xl p-8 relative overflow-hidden group hover:border-[#00ff9c]/20 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5),_0_0_16px_rgba(0,255,156,0.04)]"
+            className="flex flex-col h-full rounded-2xl p-6 lg:p-8 bg-zinc-900/50 border border-zinc-800 transition-all duration-300 hover:border-emerald-500/30"
           >
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center gap-4">
@@ -163,25 +163,25 @@ export default function DeveloperProfile() {
 
             <div className="mt-auto space-y-6">
               <div className="flex items-center gap-2 text-xs font-mono text-neutral-500 uppercase tracking-widest">
-                <Trophy className="h-3.5 w-3.5 text-[#00ff9c]" />
+                <Trophy className="h-3.5 w-3.5 text-emerald-400" />
                 Algorithmic Metrics
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-black/40 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center">
+                <div className="bg-black/40 border border-zinc-800/50 rounded-lg p-4 flex flex-col items-center justify-center">
                   <span className="text-[10px] text-neutral-500 font-mono uppercase tracking-widest mb-1">Total Solved</span>
                   {loading ? (
-                    <div className="h-8 w-16 bg-neutral-800 animate-pulse rounded" />
+                    <div className="h-8 w-16 bg-zinc-800 animate-pulse rounded" />
                   ) : (
                     <span className="text-3xl font-bold text-white font-mono">{lcStats?.totalSolved || "—"}</span>
                   )}
                 </div>
-                <div className="bg-black/40 border border-white/5 rounded-xl p-4 flex flex-col items-center justify-center">
+                <div className="bg-black/40 border border-zinc-800/50 rounded-lg p-4 flex flex-col items-center justify-center">
                   <span className="text-[10px] text-neutral-500 font-mono uppercase tracking-widest mb-1">Global Rank</span>
                   {loading ? (
-                    <div className="h-8 w-16 bg-neutral-800 animate-pulse rounded" />
+                    <div className="h-8 w-16 bg-zinc-800 animate-pulse rounded" />
                   ) : (
-                    <span className="text-3xl font-bold text-[#00ff9c] font-mono">
+                    <span className="text-3xl font-bold text-emerald-400 font-mono">
                       {lcStats?.ranking ? `#${(lcStats.ranking / 1000).toFixed(1)}k` : "—"}
                     </span>
                   )}
@@ -191,13 +191,13 @@ export default function DeveloperProfile() {
               {/* Progress Bars */}
               <div className="space-y-3 pt-2">
                 {[
-                  { label: "Easy", count: lcStats?.easySolved, total: 800, color: "bg-[#25b28d]" },
-                  { label: "Medium", count: lcStats?.mediumSolved, total: 1700, color: "bg-[#e8b23a]" },
-                  { label: "Hard", count: lcStats?.hardSolved, total: 700, color: "bg-[#e24e4e]" },
+                  { label: "Easy", count: lcStats?.easySolved, total: 800, color: "bg-teal-500" },
+                  { label: "Medium", count: lcStats?.mediumSolved, total: 1700, color: "bg-orange-400" },
+                  { label: "Hard", count: lcStats?.hardSolved, total: 700, color: "bg-red-500" },
                 ].map((tier) => (
                   <div key={tier.label} className="flex items-center gap-4">
                     <span className="text-xs font-medium w-12 text-neutral-400">{tier.label}</span>
-                    <div className="flex-1 h-1.5 rounded-full bg-neutral-800 overflow-hidden">
+                    <div className="flex-1 h-1.5 rounded-full bg-zinc-800 overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
                         animate={{ width: loading || !tier.count ? "0%" : `${Math.min((tier.count / tier.total) * 100, 100)}%` }}

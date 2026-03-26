@@ -195,10 +195,10 @@ export const certifications: Certification[] = [
   { title: "Fundamentals of Network Communication", issuer: "University of Colorado System", url: "/FundamentalsOfNetworkCommunication.pdf", tags: ["Coursera", "Professional"] },
   { title: "The Science of Well-Being", issuer: "Yale University", url: "/The%20Science%20Of%20Well%20Being.pdf", tags: ["Coursera", "Course"] },
   { title: "Computer Architecture", issuer: "Princeton University", tags: ["Coursera", "Course"] },
-  { title: "Build Generative AI Apps", issuer: "Infosys Springboard", tags: ["Infosys", "Certification"] },
-  { title: "ChatGPT-4 Prompt Engineering", issuer: "Infosys Springboard", tags: ["Infosys", "Certification"] },
-  { title: "Computational Theory Language", issuer: "Infosys Springboard", tags: ["Infosys", "Course"] },
-  { title: "Master Generative AI", issuer: "Infosys Springboard", tags: ["Infosys", "Certification"] },
-  { title: "Privacy & Security in Social Media", issuer: "NPTEL", tags: ["NPTEL", "Course"] },
+  { title: "Build Generative AI Apps", issuer: "Infosys Springboard", url: "/Build%20Generative%20AI%20Apps%20and%20Solutions%20with%20No-Code%20Tools.pdf", tags: ["Infosys", "Certification"] },
+  { title: "ChatGPT-4 Prompt Engineering", issuer: "Infosys Springboard", url: "/ChatGPT-4%20Prompt%20Engineering%20ChatGPT,%20Generative%20AI%20&%20LLM.pdf", tags: ["Infosys", "Certification"] },
+  { title: "Computational Theory Language", issuer: "Infosys Springboard", url: "/Computational%20Theory%20Language%20Principle%20&%20Finite%20Automata%20Theory.pdf", tags: ["Infosys", "Course"] },
+  { title: "Master Generative AI", issuer: "Infosys Springboard", url: "/Master%20Generative%20AI%20&%20Generative%20AI%20tools.pdf", tags: ["Infosys", "Certification"] },
+  { title: "Privacy & Security in Social Media", issuer: "NPTEL", url: "/Privacy%20And%20Security%20In%20Social%20Media.pdf", tags: ["NPTEL", "Course"] },
 ];
 
